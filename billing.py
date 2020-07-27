@@ -6,7 +6,7 @@ from tariff import Tariff
 DEBUG = os.environ.get('DEBUG', 'off').lower() == 'on'
 
 
-def debug(level, *args, **kwargs):
+def debug(*args, **kwargs):
     if DEBUG:
         print(*args, **kwargs)
 
