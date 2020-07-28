@@ -28,7 +28,7 @@ class Billing:
         self.paid_sms_count_different_operator = 0
 
     @staticmethod
-    def get_first_minute_full_duration(raw_duration: str):
+    def get_first_minute_full_duration(raw_duration: str) -> int:
         duration = int(raw_duration)
         return duration if duration > 60 else 60
 
@@ -61,14 +61,14 @@ class Billing:
         paid_seconds = self.spend_free_seconds(record['duration'])
         self.paid_seconds_different_operator += paid_seconds
 
-    def sms_same_operator(self, record):
+    def sms_same_operator(self, _):
         debug("SMS same operator")
         if self.free_sms_left > 0:
             self.free_sms_left -= 1
         else:
             self.paid_sms_count_same_operator += 1
 
-    def sms_different_operator(self, record):
+    def sms_different_operator(self, _):
         debug("SMS different operator")
         if self.free_sms_left > 0:
             self.free_sms_left -= 1
